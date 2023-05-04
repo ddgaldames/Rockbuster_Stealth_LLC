@@ -1,4 +1,4 @@
-# Rockbuster_SQL
+Rockbuster_SQL
 
 This is a project I did for my data analytics course at Career Foundry.  The primary focus for this project was learnign SQL.  
 
