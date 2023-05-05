@@ -10,6 +10,6 @@ Rockbuster Stealth LLC is a fictitious movie rental company with stores all over
 
 # Data
 
-It is an open source database with with 17 tables containing information  customers, payments, rentals, films, cities, countries, categories, stores, and actors.  
+It is a fictitious database for the purpose of learning SQL.  It has  17 tables containing information regarding customers, payments, rentals, films, cities, countries, categories, stores, and actors.  
 
 Here is the link to all my tableau visuzliations: [Tableau Visuals](https://public.tableau.com/app/profile/david.galdames)
