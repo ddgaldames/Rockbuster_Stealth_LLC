@@ -1,0 +1,24 @@
+I used the following CTE query to find the top ten customers by total payment from the top ten countries with the most sales.
+
+WITH top_10_customers_from_top_10_countries_cte (country, customer_count, total_payment) AS
+    (SELECT E.country, COUNT(DISTINCT A.customer_id) AS customer_count, SUM(A.amount) AS total_payment
+    FROM payment A
+        INNER JOIN customer B ON A.customer_id=B.customer_id
+        INNER JOIN address C ON B.address_id=C.address_id
+        INNER JOIN city D ON C.city_id=D.city_id
+        INNER JOIN country E ON D.country_id=E.country_id
+    GROUP BY E.country
+    ORDER BY total_payment DESC
+    LIMIT 10)
+    
+    SELECT C.first_name, C.last_name, F.country, E.city, COUNT(DISTINCT B.rental_id) AS number_of_rentals, SUM(amount) AS total_payment
+    FROM payment A
+        INNER JOIN rental B ON A.rental_id=B.rental_id
+        INNER JOIN customer C ON B.customer_id=C.customer_id
+        INNER JOIN address D on C.address_id=D.address_id
+        INNER JOIN city E ON D.city_id=E.city_id
+        INNER JOIN country F ON E.country_id=F.country_id
+        INNER JOIN top_10_customers_from_top_10_countries_cte ON F.country=top_10_customers_from_top_10_countries_cte.country
+    GROUP BY F.country, E.city, C.first_name, C.last_name
+    ORDER BY total_payment DESC
+  LIMIT 10
