@@ -1,0 +1,11 @@
+To determine the least successful actor/actress, I used the folloiwng queries with multiple joins:
+
+SELECT E.first_name, E.last_name, COUNT(DISTINCT B.rental_id) AS number_of_rentals, SUM(amount) AS total_revenue											
+FROM payment A
+  INNER JOIN rental B on A.rental_id=B.rental_id
+  INNER JOIN inventory C on B.inventory_id=C.inventory_id
+  INNER JOIN film_actor D on C.film_id=D.film_id
+  INNER JOIN actor E ON D.actor_id=E.actor_id
+  GROUP BY E.first_name, E.last_name
+  ORDER BY total_revenue 
+LIMIT 1
